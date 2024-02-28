@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <title> AI Career Guide</title>
+    <meta name="description" content="Career Guidance Experts for your longtime success and happiness. Explore your potential, discover your passion, and achieve your dreams. Providing insights into #MBTI, #Big5Personality, #YouthEmpowerment, and more." />
+
+    <meta name="keywords" content="#CareerGuidance, #MBTI, #Big5Personality, #SuccessJourney, #ProfessionalGrowth, #YouthEmpowerment, #CollegeStudies, #JobSeekers, #SkillsDevelopment, #CareerPlanning, #DreamCareer, #SkillsAssessment, #StudentSuccess, #LifeGoals, #CareerOptions, #ExploreYourPassion, #SuccessMindset, #AchievementUnlocked, #DreamJob, #CareerAdvice, #JobSearch, #CareerDecisions, #CareerPaths, #SkillsForSuccess, #AchieveYourDreams, #YouthfulLeadership, #DiscoverYourPotential, #PathToSuccess, #WorldofOpportunities, #PersonalGrowth, #BuildingYourFuture, #ExploreProfessions, #CareerMentorship, #DreamProfession, #ProfessionalGrowth, #YouthfulLeaders, #ChoosingRightCareer, #JobOpportunities, #SuccessStrategies, #PotentialUnleashed, #UnlockYourPotential, #DreamsToReality, #YouthfulDreamers, #PavingYourPath, #YouthCareer, #AchieveYourDreams, #CareerGrowth, #YouthfulLeadership, #EducationalPath, #JobMarketTrends, #CareerAdviceWorld, #YouthfulIndia, #GlobalYouthSuccess, #CareerPathways, #SuccessAhead, #PathToGreatness, #YouthfulEnergy, #CollegeStudiesIndia, #DreamJobSearch, #CareerGuidanceIndia, #JobSeekersIndia, #YouthfulIndia, #GlobalYouthSuccess, #CareerPlanningIndia, #YouthfulProfessionals, #SkillsForYouth, #ExploringSuccess, #PersonalGrowth, #BuildingYourFuture, #SkillsForLife, #YouthfulLeaders, #ChoosingRightCareer, #JobOpportunities, #NavigatingCareer, #SuccessStrategies, #PotentialUnleashed, #YouthfulInnovators, #CollegeLifeIndia, #YouthfulDreamers, #PavingYourPath, #YouthCareerIndia, #CareerAdviceWorld, #CareerGrowthIndia, #YouthfulLeadership, #AchieveYourDreams, #JobSearchWorld." />
+    <!-- Add other meta tags as needed -->
+    @RenderSection("Styles", required: false) <!-- Ensure this line is present -->
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker/dist/datepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Add Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+
+    <script>// Initialize Select2 on your country input field
+        $(document).ready(function () {
+            $('#countryPicker').select2();
+        });</script>
+   
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <title>Whatsapp Clone</title>
+    <link rel="icon" href="https://github.com/shivangnayar-dev/img/blob/main/CareerTests.PNG?raw=true" />
+    <script src="https://cdn.jsdelivr.net/npm/datepicker"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+
+
+
+    <!-- Add other navigation links as needed -->
+
+
+
+
+    <div class="main-container">
+        <!-- Your existing content from index.cshtml here -->
+        @RenderBody()
+    </div>
+
+    <script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

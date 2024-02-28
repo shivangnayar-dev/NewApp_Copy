@@ -1,0 +1,13 @@
+/root/NewApp/NewApp/bin/Release/net7.0/publish/NewApp
+/root/NewApp/NewApp/bin/Release/net7.0/publish/appsettings.Development.json
+/root/NewApp/NewApp/bin/Release/net7.0/publish/appsettings.json
+/root/NewApp/NewApp/bin/Release/net7.0/publish/NewApp.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/NewApp.deps.json
+/root/NewApp/NewApp/bin/Release/net7.0/publish/NewApp.runtimeconfig.json
+/root/NewApp/NewApp/bin/Release/net7.0/publish/NewApp.pdb
+/root/NewApp/NewApp/bin/Release/net7.0/publish/Microsoft.EntityFrameworkCore.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/Microsoft.EntityFrameworkCore.Abstractions.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/Microsoft.EntityFrameworkCore.Relational.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/MySqlConnector.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/Newtonsoft.Json.dll
+/root/NewApp/NewApp/bin/Release/net7.0/publish/Pomelo.EntityFrameworkCore.MySql.dll

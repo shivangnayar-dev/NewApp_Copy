@@ -1,0 +1,515 @@
+
+body {
+    position : sticky !important;
+    margin: 0;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+    .main-container .left-container {
+        flex: 30%;
+        background: #fff;
+    }
+
+    .main-container .right-container {
+        flex: 70%;
+        background: #e5ddd5;
+        position: relative;
+    }
+
+        .main-container .right-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(https://camo.githubusercontent.com/854a93c27d64274c4f8f5a0b6ec36ee1d053cfcd934eac6c63bed9eaef9764bd/68747470733a2f2f7765622e77686174736170702e636f6d2f696d672f62672d636861742d74696c652d6461726b5f61346265353132653731393562366237333364393131306234303866303735642e706e67);
+            opacity: 0.5;
+        }
+
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background: #ededed;
+    padding: 0 15px;
+}
+
+.user-img {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.dp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.nav-icons {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 10px;
+}
+
+    .nav-icons li {
+        background-color: pink;
+        list-style: none;
+        display: flex;
+        cursor: pointer;
+        color: #51585c;
+        margin-left: 22px;
+        font-size: 18px;
+    }
+
+.notif-box {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background: #cf9fff;
+    align-items: center;
+    font-size: 0.8em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .notif-box i {
+        position: relative;
+        left: 13px;
+        background: #fff;
+        padding: 10px;
+        width: 42px;
+        height: auto;
+        font-size: 20px;
+        border-radius: 55%;
+        cursor: pointer;
+        color: #76daff;
+    }
+
+    .notif-box:hover {
+        background-color: lightgray; /* or any other color you prefer on hover */
+    }
+
+    .notif-box .fa-xmark {
+        position: absolute;
+        left: 260px;
+        text-align: center;
+        background: #76daff;
+        color: #fff;
+    }
+
+.notif-text {
+    margin: 25px;
+}
+
+    .notif-text a {
+        text-decoration: none;
+        color: #333;
+        font-size: 0.9em;
+    }
+
+.search-container {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #f6f6f6;
+    display: flex;
+}
+
+    .search-container .input input {
+        width: 100%;
+        outline: none;
+        border: none;
+        background: #fff;
+        padding: 5px;
+        height: 30px;
+        border-radius: 10px;
+        font-size: 12px;
+        padding-left: 60px;
+        margin: 10px;
+    }
+
+    .search-container .input i {
+        position: absolute;
+        left: 26px;
+        top: 14px;
+        color: #bbb;
+        font-size: 0.8em;
+    }
+
+.chat-list {
+    position: relative;
+    height: 80%;
+    overflow-y: auto;
+}
+
+    .chat-list .chat-box {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+        .chat-list .chat-box .img-box {
+            width: 55px;
+            height: 45px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .chat-list .chat-box .chat-details {
+            width: 100%;
+            margin-left: 10px;
+        }
+
+            .chat-list .chat-box .chat-details .text-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2px;
+            }
+
+                .chat-list .chat-box .chat-details .text-head h4 {
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    color: #8a2be2;
+                }
+
+                .chat-list .chat-box .chat-details .text-head .time {
+                    font-size: 0.8em;
+                    color: #aaa;
+                }
+
+            .chat-list .chat-box .chat-details .text-message {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .chat-list .chat-box .chat-details .text-message p {
+                    color: #8a2be2;
+                    font-size: 0.9em;
+                    overflow: hidden;
+                }
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.chat-list .chat-box .chat-details .text-message b {
+    background: #06e744;
+    color: #fff;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-list .active {
+    background: #ebebeb;
+}
+
+.chat-list .chat-box:hover {
+    background: #f5f5f5;
+}
+
+.chat-list .chat-box .chat-details .text-head .unread {
+    color: #06e744;
+}
+
+.right-container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .right-container .header .img-text .user-img .dp {
+        width: 40px;
+        height: auto;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .right-container .header .img-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .right-container .header .img-text h4 {
+            font-weight: 500;
+            line-height: 1.2em;
+            margin-left: 15px;
+        }
+
+            .right-container .header .img-text h4 span {
+                font-size: 0.8em;
+                color: #555;
+            }
+
+    .right-container .header .nav-icons {
+        margin-right: 0px;
+    }
+
+        .right-container .header .nav-icons i {
+            padding: 10px;
+        }
+
+.chat-container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 120px);
+    padding: 50px;
+    overflow-x: auto; /* Enable horizontal scroll */
+    overflow-y: auto;
+}
+
+.message-box {
+    display: flex;
+    width: 100%;
+    margin: 5px 0;
+}
+
+    .message-box p {
+        text-align: right;
+        max-width: 65%;
+        padding: 12px;
+        background: #dcf8c6;
+        border-radius: 10px;
+        font-size: 0.9em;
+    }
+
+    .message-box.my-message p::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -12px;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #dcf8c6 0%, #dcf8c6 50%, transparent 50%, transparent);
+    }
+
+    .message-box p span {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.8em;
+        opacity: 0.5;
+    }
+
+.my-message {
+    justify-content: flex-end;
+}
+
+.friend-message p {
+    background: #fff;
+}
+
+.friend-message {
+    justify-content: flex-start;
+}
+
+.chat-container .my-message i {
+    color: yellow;
+}
+
+.message-box.friend-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+}
+
+.chatbox-input {
+    position: relative;
+    width: 100%;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .chatbox-input i {
+        cursor: pointer;
+        font-size: 1.8em;
+        color: #515855;
+    }
+
+        .chatbox-input i:nth-child(1) {
+            margin: 15px;
+        }
+
+        .chatbox-input i:last-child {
+            margin-right: 25px;
+        }
+
+    .chatbox-input input {
+        width: 90%;
+        margin: 0 20px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 1em;
+        border: none;
+        outline: none;
+    }
+
+.western-button,
+.vedic-button, .ascendant-button, .ascendantsub-button,
+#dobSubmitButton, #ascendantInput {
+    background-color: #8a2be2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+    .western-button:hover,
+    .vedic-button:hover,
+    #dobSubmitButton:hover {
+        background-color: #8000ff; /* Darker Purple color on hover */
+    }
+
+.nav-icon {
+    width: 30px;
+    height: 24px;
+}
+
+.linkedin-logo-container {
+    margin-left: 22px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.linkedin-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    position: relative;
+    z-index: 3;
+}
+
+.left-container {
+    transition: margin-left 0.5s;
+    margin-left: 0;
+}
+
+.left-container-closed {
+    margin-left: -60%;
+    width: 0;
+}
+
+.slide-button {
+    position: fixed;
+    top: 50%;
+    left: 29.4%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    font-size: 24px;
+}
+
+.slide-button-closed {
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .left-container {
+        transition: margin-left 0.5s;
+        margin-left: -60%;
+        width: 0;
+        overflow: auto;
+    }
+
+    .left-container-closed {
+        margin-left: 0;
+        width: auto;
+        overflow: visible;
+    }
+
+    .slide-button {
+        position: fixed;
+        top: 50%;
+        left: -1%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        font-size: 24px;
+    }
+
+    .slide-button-closed {
+        left: 29.4%;
+    }
+
+    .left-container.opened {
+        margin-left: 0;
+        width: 30%;
+        overflow: hidden;
+    }
+
+    .slide-button.opened {
+        left: 29.4%;
+    }
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content div,
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+    }
+
+        .dropdown-content div:hover,
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+.show {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}

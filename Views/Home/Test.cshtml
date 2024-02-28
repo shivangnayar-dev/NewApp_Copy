@@ -1,0 +1,765 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    var importUrl = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap";
+}
+
+@section Styles{
+    <style>
+
+
+	.timer-container {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            margin-top: 20%;
+            margin-left: 10px;
+           
+        }
+
+            .timer-container > * {
+                margin: 0 5px; /* Add margin between timer elements */
+            }
+
+        .timer {
+            display: flex;
+            align-items: center;
+        }
+
+        .minutes,
+        .seconds {
+            font-size: 3em;
+            color: #333;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-separator {
+            font-size: 3em;
+            color: #333;
+            margin: 0 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        /* Style for the modal content */
+        .modal-content {
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Style for the close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        .question-container {
+            margin-right: 10px; /* Adjust the value according to your preference */
+        }
+
+        .question-grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            gap: 8px;
+            margin-top: 60%;
+            overflow: auto;
+            max-height: 300px;
+        }
+        .question-box {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(0 0 0 / 36%); /* Blue color */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        @@media only screen and (max-width: 767px) {
+            body {
+                overflow: auto; /* Enable scrolling for the entire page on mobile */
+            }
+
+            .main-container {
+                flex-direction: row; /* Stack containers vertically in mobile view */
+                height: auto; /* Allow the main container to take the necessary height */
+            }
+
+            .left-container {
+                width: 100%; /* Adjust the width as needed for mobile view */
+                order: -1; /* Move the left container to the top in the flex order */
+                margin-left: 0; /* Reset margin for the closed state in mobile view */
+            }
+
+            .right-container {
+                flex: 100%; /* Allow the right container to take the full width on mobile */
+            }
+
+            .header {
+                height: auto; /* Allow the header to take the necessary height */
+                flex-direction: column; /* Stack header items vertically in mobile view */
+                padding: 10px;
+            }
+
+                .header .nav-icons {
+                    justify-content: flex-start; /* Align navigation icons to the start in mobile view */
+                }
+
+                    .header .nav-icons li {
+                        margin-left: 10px; /* Adjust the margin for better spacing in mobile view */
+                    }
+
+            .chat-container {
+                height: auto; /* Allow the chat container to take the necessary height */
+                padding: 20px; /* Adjust padding for better spacing on mobile */
+            }
+
+            .message-box p {
+                max-width: 100%; /* Allow messages to take full width on mobile */
+            }
+
+            .chatbox-input {
+                width: 100%; /* Allow the input area to take the full width on mobile */
+            }
+
+                .chatbox-input input {
+                    width: 100%;
+                    margin-right: 0;
+                    / Remove margin for better spacing on mobile */
+                }
+            .chat-list {
+                height: auto; /* Allow the chat list to take the necessary height */
+                overflow-y: auto; /* Add vertical scrolling if content exceeds max-height */
+            }
+
+                .chat-list .chat-box {
+                    flex-direction: column; /* Stack chat boxes vertically in mobile view */
+                    padding: 15px;
+                }
+
+            .message-box.my-message.astro-button-container {
+                flex-direction: column; /* Stack buttons vertically in mobile view */
+                align-items: center; /* Center buttons in mobile view */
+            }
+
+                .message-box.my-message.astro-button-container button {
+                    width: 100%; /* Make buttons take full width in mobile view */
+                    margin-bottom: 10px; /* Add margin between buttons in mobile view */
+                }
+                    /* Additional styles as needed for other elements */
+                    /* ... existing styles ... */
+                }
+
+        importUrl = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap";
+        body {
+            position: sticky !important;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .main-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+
+
+            .main-container .right-container {
+                flex: 70%;
+                background: #e5ddd5;
+                position: relative;
+            }
+
+                .main-container .right-container::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: url(https://camo.githubusercontent.com/854a93c27d64274c4f8f5a0b6ec36ee1d053cfcd934eac6c63bed9eaef9764bd/68747470733a2f2f7765622e77686174736170702e636f6d2f696d672f62672d636861742d74696c652d6461726b5f61346265353132653731393562366237333364393131306234303866303735642e706e67);
+                    opacity: 0.5;
+                }
+
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            background: #ededed;
+            padding: 0 15px;
+        }
+
+        .user-img {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .dp {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .nav-icons {
+            display: flex;
+            justify-content: flex-end;
+            padding-left: 10px;
+        }
+
+            .nav-icons li {
+                background-color: pink;
+                list-style: none;
+                display: flex;
+                cursor: pointer;
+                color: #51585c;
+                margin-left: 22px;
+                font-size: 18px;
+            }
+
+        .notif-box {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 70px;
+            background: #cf9fff;
+            align-items: center;
+            font-size: 0.8em;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .notif-box i {
+                position: relative;
+                left: 13px;
+                background: #fff;
+                padding: 10px;
+                width: 42px;
+                height: auto;
+                font-size: 20px;
+                border-radius: 55%;
+                cursor: pointer;
+                color: #76daff;
+            }
+
+            .notif-box:hover {
+                background-color: lightgray; /* or any other color you prefer on hover */
+            }
+
+            .notif-box .fa-xmark {
+                position: absolute;
+                left: 260px;
+                text-align: center;
+                background: #76daff;
+                color: #fff;
+            }
+
+        .notif-text {
+            margin: 25px;
+        }
+
+            .notif-text a {
+                text-decoration: none;
+                color: #333;
+                font-size: 0.9em;
+            }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            background: #f6f6f6;
+            display: flex;
+        }
+
+            .search-container .input input {
+                width: 100%;
+                outline: none;
+                border: none;
+                background: #fff;
+                padding: 5px;
+                height: 30px;
+                border-radius: 10px;
+                font-size: 12px;
+                padding-left: 60px;
+                margin: 10px;
+            }
+
+            .search-container .input i {
+                position: absolute;
+                left: 26px;
+                top: 14px;
+                color: #bbb;
+                font-size: 0.8em;
+            }
+           
+        .chat-list {
+            position: relative;
+            height: 80%;
+            overflow-y: auto;
+        }
+
+            .chat-list .chat-box {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 15px;
+                border-bottom: 1px solid #eee;
+            }
+
+                .chat-list .chat-box .img-box {
+                    width: 55px;
+                    height: 45px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                }
+
+                .chat-list .chat-box .chat-details {
+                    width: 100%;
+                    margin-left: 10px;
+                }
+
+                    .chat-list .chat-box .chat-details .text-head {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 2px;
+                    }
+
+                        .chat-list .chat-box .chat-details .text-head h4 {
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            color: #8a2be2;
+                        }
+
+                        .chat-list .chat-box .chat-details .text-head .time {
+                            font-size: 0.8em;
+                            color: #aaa;
+                        }
+
+                    .chat-list .chat-box .chat-details .text-message {
+                       
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                        .chat-list .chat-box .chat-details .text-message p {
+                            color: #8a2be2;
+                            font-size: 0.9em;
+                            overflow: hidden;
+                        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .chat-list .chat-box .chat-details .text-message b {
+            background: #06e744;
+            color: #fff;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-list .active {
+            background: #ebebeb;
+        }
+
+        .chat-list .chat-box:hover {
+            background: #f5f5f5;
+        }
+
+        .chat-list .chat-box .chat-details .text-head .unread {
+            color: #06e744;
+        }
+
+        .right-container .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .right-container .header .img-text .user-img .dp {
+                width: 40px;
+                height: auto;
+                overflow: hidden;
+                object-fit: cover;
+            }
+
+            .right-container .header .img-text {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+                .right-container .header .img-text h4 {
+                    font-weight: 500;
+                    line-height: 1.2em;
+                    margin-left: 15px;
+                }
+
+                    .right-container .header .img-text h4 span {
+                        font-size: 0.8em;
+                        color: #555;
+                    }
+
+            .right-container .header .nav-icons {
+                margin-right: 0px;
+            }
+
+                .right-container .header .nav-icons i {
+                    padding: 10px;
+                }
+
+        .chat-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 120px);
+            padding: 50px;
+            overflow-x: auto; /* Enable horizontal scroll */
+            overflow-y: auto;
+        }
+
+        .message-box {
+            display: flex;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+            .message-box p {
+                text-align:left;
+                max-width: 65%;
+                padding: 12px;
+                background: #dcf8c6;
+                border-radius: 10px;
+                font-size: 0.9em;
+            }
+
+            .message-box.my-message p::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -12px;
+                width: 20px;
+                height: 20px;
+                background: linear-gradient(135deg, #dcf8c6 0%, #dcf8c6 50%, transparent 50%, transparent);
+            }
+
+            .message-box p span {
+                display: block;
+                margin-top: 5px;
+                font-size: 0.8em;
+                opacity: 0.5;
+            }
+
+        .my-message {
+            justify-content: flex-end;
+        }
+
+        .my-messagee {
+        }
+
+        .friend-message p {
+            background: #fff;
+        }
+
+        .friend-message {
+            justify-content: flex-start;
+        }
+
+        .chat-container .my-message i {
+            color: yellow;
+        }
+
+        .message-box.friend-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -12px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+        }
+
+        .chatbox-input {
+            position: relative;
+            width: 100%;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .chatbox-input i {
+                cursor: pointer;
+                font-size: 1.8em;
+                color: #515855;
+            }
+
+                .chatbox-input i:nth-child(1) {
+                    margin: 15px;
+                }
+
+                .chatbox-input i:last-child {
+                    margin-right: 25px;
+                }
+
+            .chatbox-input input {
+                width: 90%;
+                margin: 0 20px;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 1em;
+                border: none;
+                outline: none;
+            }
+
+        .westernnn-button,
+        .vedic-button, .ascendant-button, .ascendantsub-button,
+        #dobSubmitButton, #ascendantInput {
+            background-color: #d19cff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .westernn-button,
+        .vedic-button, .ascendant-button, .ascendantsub-button,
+        #dobSubmitButton, #ascendantInput {
+            background-color: #b766e9;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+        .message-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 10px; /* Adjust margin as needed */
+        }
+
+        .qr-button {
+            background-color: #8a2be2;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .western-button,
+        .vedic-button, .ascendant-button, .ascendantsub-button,
+        #dobSubmitButton, #ascendantInput {
+            background-color: #8a2be2;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+            .western-button:hover,
+            .westernn-button:hover,
+            .westernnn-button:hover,
+            .vedic-button:hover,
+            #dobSubmitButton:hover {
+                background-color: #8000ff; /* Darker Purple color on hover */
+            }
+
+        .nav-icon {
+            width: 30px;
+            height: 24px;
+        }
+
+        .linkedin-logo-container {
+            margin-left: 22px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .linkedin-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            margin-left: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+
+        .left-container{
+            width:20%;
+        }
+        .left-container-closed {
+            margin-left: -60%;
+            width: 0;
+        }
+
+        .slide-button {
+            position: fixed;
+            top: 50%;
+            left: 29.4%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            font-size: 24px;
+        }
+
+        .slide-button-closed {
+            left: 0;
+        }
+    </style>
+}
+
+
+<div class="background-green"></div>
+
+<div class="main-container">
+    <div class="left-container">
+        <!-- header -->
+        <div class="header">
+            <div class="user-img">
+                <img class="dp" src="https://github.com/shivangnayar-dev/img/blob/main/ai%201.png?raw=true" alt="">
+            </div>
+            <div class="nav-icons">
+                <div class="linkedin-logo-container">
+                    <a href="https://www.linkedin.com/company/pexitics.com/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png" alt="LinkedIn" class="nav-icon linkedin-icon">
+                    </a>
+                </div>
+                <div class="linkedin-logo-container">
+                    <a href="https://wa.me/917349662320" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png" alt="WhatsApp" class="nav-icon whatsapp-icon">
+                    </a>
+                </div>
+                <div class="linkedin-logo-container">
+                    <a href="https://www.youtube.com/playlist?list=PLFhNcXkdLYt-fFQYRTbIKYD77WabWVnSP" target="_blank">
+                        <img src="https://w7.pngwing.com/pngs/679/48/png-transparent-youtube-logo-youtube-play-button-computer-icons-youtube-icon-angle-rectangle-desktop-wallpaper.png" alt="YouTube" class="nav-icon whatsapp-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- notification -->
+        <!-- chats -->
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="right-container">
+        <!-- header -->
+        <div class="header">
+            <div class="img-text">
+                <div class="user-img">
+                  
+                </div>
+               
+            </div>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <!-- chat-container -->
+        <div class="chat-container">
+            <div class="message-box my-message">
+                <p>Welcome! To get started, please choose an option for registration:</p>
+            </div>
+            <div class="message-box my-message astro-button-container">
+                <button class="westernn-button" onclick="askemail()">Sign Up with Email</button>
+                <button class="western-button" onclick="askPhone()">Sign Up with Phone</button>
+                <button class="westernnn-button" onclick="askadhar()">Sign Up with AdharNo</button>
+              
+            </div>
+
+        </div>
+
+        <!-- input-bottom -->
+        <div class="chatbox-input">
+            <i class="fa-regular fa-face-grin"></i>
+            <i class="fa-sharp fa-solid fa-paperclip"></i>
+            <input type="text" id="dobInput" placeholder="Type a message...">
+            <button id="dobSubmitButton" onclick="handleMultipleSubmit()">Submit</button>
+            <i class="fa-solid fa-microphone" onclick="handleUserInput()"></i>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
